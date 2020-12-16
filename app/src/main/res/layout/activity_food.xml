@@ -6,6 +6,8 @@
         android:layout_height="match_parent"
         tools:context=".activities.FoodActivity">
 
+
+
     <Button
             android:text="@string/start_spinner_button_text"
             android:layout_width="wrap_content"
