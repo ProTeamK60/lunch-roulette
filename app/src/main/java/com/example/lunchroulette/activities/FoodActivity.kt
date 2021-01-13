@@ -12,7 +12,11 @@ class FoodActivity : AppCompatActivity() {
     override fun  onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
-        FoodService.makeCall()
+
+        val fsc = FoodService()
+
+        val tes = fsc.makeCall()
+
         food_activity_spin_button.setOnClickListener{
             Toast.makeText(this, "yoy clicked on buttun", Toast.LENGTH_SHORT).show()
         }
