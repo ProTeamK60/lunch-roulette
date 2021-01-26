@@ -20,6 +20,14 @@ class ResturantAdapter(var context: Context, var items: List<Restaurant>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.restaurant_row_name.text = items[position].name
+        //holder.itemView.restaurant_row_name.background = items[position].name
+    }
+
+    fun randomResturantBgcolorTest() {
+        var number = (Math.random() * 5).toInt()
+        if(number==5){
+            number=4
+        }
     }
 
     override fun getItemCount(): Int {
@@ -28,5 +36,11 @@ class ResturantAdapter(var context: Context, var items: List<Restaurant>) :
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    }
+}
+
+fun main() {
+    for (i in 1..10) {
+        print((Math.random() * 5).toInt())
     }
 }

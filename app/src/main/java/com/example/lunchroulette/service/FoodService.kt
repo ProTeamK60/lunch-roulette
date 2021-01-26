@@ -7,6 +7,7 @@ class FoodService {
 
     fun makeCall() : ArrayList<Restaurant>{
 
+
         val restaurant = Restaurant("ChinaResturant", 1.2, "Solna")
         val restaurant1 = Restaurant("ThaiResturant", 1.2, "Solna")
         val restaurant2 = Restaurant("SvenskResturant", 1.5, "Högdalen")
@@ -15,4 +16,5 @@ class FoodService {
 
       return arrayListOf(restaurant, restaurant1, restaurant2, restaurant3, restaurant4)
     }
+
 }
