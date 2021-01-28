@@ -4,13 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lunchroulette.R
 import com.example.lunchroulette.model.Restaurant
 import kotlinx.android.synthetic.main.resturant_row_item.view.*
 
-class ResturantAdapter(var context: Context, var items: List<Restaurant>) :
-    RecyclerView.Adapter<ResturantAdapter.MyViewHolder>() {
+class RestaurantAdapter(var context: Context, var items: List<Restaurant>) :
+    RecyclerView.Adapter<RestaurantAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         return MyViewHolder(
@@ -23,11 +24,12 @@ class ResturantAdapter(var context: Context, var items: List<Restaurant>) :
         //holder.itemView.restaurant_row_name.background = items[position].name
     }
 
-    fun randomResturantBgcolorTest() {
+    fun randomResturantBgcolorTest():Int {
         var number = (Math.random() * 5).toInt()
         if(number==5){
             number=4
         }
+        return number
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +37,12 @@ class ResturantAdapter(var context: Context, var items: List<Restaurant>) :
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        lateinit var myTextView : TextView
+
+        fun bindElementsToView(position: Int, ){
+
+        }
 
     }
 }
