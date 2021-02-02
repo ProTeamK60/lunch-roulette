@@ -24,7 +24,7 @@ class RestaurantAdapter(var context: Context, var items: List<Restaurant>) :
         //holder.itemView.restaurant_row_name.background = items[position].name
     }
 
-    fun randomResturantBgcolorTest():Int {
+    fun randomResturantIndex():Int {
         var number = (Math.random() * 5).toInt()
         if(number==5){
             number=4
@@ -46,9 +46,9 @@ class RestaurantAdapter(var context: Context, var items: List<Restaurant>) :
 
     }
 }
-
+/*
 fun main() {
     for (i in 1..10) {
         print((Math.random() * 5).toInt())
     }
-}
+}*/

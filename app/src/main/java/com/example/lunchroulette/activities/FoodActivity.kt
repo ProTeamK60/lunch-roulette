@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lunchroulette.Adapter.RestaurantAdapter
 import com.example.lunchroulette.R
+import com.example.lunchroulette.model.Restaurant
 import com.example.lunchroulette.service.FoodService
 import kotlinx.android.synthetic.main.activity_food.*
 
 class FoodActivity : AppCompatActivity() {
 
-    override fun  onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
 
@@ -26,20 +27,45 @@ class FoodActivity : AppCompatActivity() {
 
         //todo*******
 
-
-        food_activity_spin_button.setOnClickListener{
-           startLoop(adapter)
-           // Toast.makeText(this,"button 1 clicked", Toast.LENGTH_SHORT).show()
+        food_activity_spin_button.setOnClickListener {
+            startLoop(adapter, restaurants)
+            // Toast.makeText(this,"button 1 clicked", Toast.LENGTH_SHORT).show()
 
         }
     }
 
-    fun startLoop(adapter: RestaurantAdapter) {
-        var random = adapter.randomResturantBgcolorTest()
-        
-        rv_resturant.layoutManager!!.findViewByPosition(random)!!
-            .findViewById<LinearLayout>(R.id.llItem).setBackgroundColor(
-            Color.BLUE)
+    fun startLoop(adapter: RestaurantAdapter, restaurants : List<Restaurant>) {
+        var randomIndex = adapter.randomResturantIndex()
 
+        var counter = 0
+
+        for(r in 0..randomIndex * 5) {
+
+            for (i in restaurants.indices) {
+                rv_resturant.layoutManager!!.findViewByPosition(i)!!
+                    .findViewById<LinearLayout>(R.id.llItem).setBackgroundColor(
+                        Color.WHITE
+                    )
+            }
+
+            if (counter == restaurants.size || ) {
+                counter = 0;
+            }
+
+            rv_resturant.layoutManager!!.findViewByPosition(counter)!!
+                .findViewById<LinearLayout>(R.id.llItem).setBackgroundColor(
+                    Color.BLUE
+                )
+
+            //TODO: wait 0.5 s
+        }
     }
 }
+
+    fun main() {
+        val fsc = FoodService()
+        val restaurants = fsc.makeCall()
+        for (i in restaurants) {
+
+        }
+    }
