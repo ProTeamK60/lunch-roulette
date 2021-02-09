@@ -10,6 +10,10 @@ import com.example.lunchroulette.R
 import com.example.lunchroulette.model.Restaurant
 import com.example.lunchroulette.service.FoodService
 import kotlinx.android.synthetic.main.activity_food.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FoodActivity : AppCompatActivity() {
 
@@ -28,18 +32,22 @@ class FoodActivity : AppCompatActivity() {
         //todo*******
 
         food_activity_spin_button.setOnClickListener {
-            startLoop(adapter, restaurants)
-            // Toast.makeText(this,"button 1 clicked", Toast.LENGTH_SHORT).show()
+            GlobalScope.launch(context = Dispatchers.Main) {
+                startLoop(adapter, restaurants)
+                // Toast.makeText(this,"button 1 clicked", Toast.LENGTH_SHORT).show()
+            }
+
 
         }
     }
 
-    fun startLoop(adapter: RestaurantAdapter, restaurants : List<Restaurant>) {
+    fun startLoop(adapter: RestaurantAdapter, restaurants: List<Restaurant>) {
         var randomIndex = adapter.randomResturantIndex()
 
         var counter = 0
 
-        for(r in 0..randomIndex * 5) {
+        //GlobalScope.launch(context = Dispatchers.Main) {
+        for (r in 0..7) {
 
             for (i in restaurants.indices) {
                 rv_resturant.layoutManager!!.findViewByPosition(i)!!
@@ -48,24 +56,33 @@ class FoodActivity : AppCompatActivity() {
                     )
             }
 
-            if (counter == restaurants.size || ) {
+            if (counter == restaurants.size) {
                 counter = 0;
             }
 
-            rv_resturant.layoutManager!!.findViewByPosition(counter)!!
+            rv_resturant.layoutManager!!.findViewByPosition(counter++)!!
                 .findViewById<LinearLayout>(R.id.llItem).setBackgroundColor(
                     Color.BLUE
                 )
 
             //TODO: wait 0.5 s
+            //Thread.sleep(1000)
+            //delayFunc(1234)
+
+            Thread.sleep(1000)
+
         }
     }
+
+}
+//}
+
+suspend fun delayFunc(miliseconds: Long) {
+    delay(miliseconds)
 }
 
-    fun main() {
-        val fsc = FoodService()
-        val restaurants = fsc.makeCall()
-        for (i in restaurants) {
 
-        }
-    }
+fun main() {
+
+}
+
